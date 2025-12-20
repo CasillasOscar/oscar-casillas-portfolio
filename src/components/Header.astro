@@ -3,17 +3,40 @@
 ---
 <header class="flex flex-col items-center gap-4 py-5 w-[80%] md:flex-row md:justify-between">
   <img
-    class="rounded-full w-12 h-12"
+    class="rounded-full size-12"
     src="/assets/FotoPerfil.jpg"
     alt="Foto de Oscar"
   />
 
   <nav>
     <ul class="flex flex-row gap-x-10">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#home">Inicio</a></li>
+      <li><a href="#presentation">Sobre mí</a></li>
+      <li><a href="#projects">Proyectos</a></li>
+      <li><a href="#contact">Contacto</a></li>
     </ul>
   </nav>
 </header>
+
+<style>
+  li {
+    position: relative;
+  }
+
+  li::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #8446b1;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  li:hover::after {
+    transform: scaleX(1);
+  }
+</style>
