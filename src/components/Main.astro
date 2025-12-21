@@ -1,37 +1,7 @@
 ---
-import Badge from "./Badge.astro";
-import LinkedIn from "../icons/LinkedIn.astro";
-import GitHub from "../icons/GitHub.astro";
-import SocialPill from "./SocialPill.astro";
+import Presentation from "./Presentation.astro"
 ---
 
 <main class="flex flex-1 py-3 px-3 w-[90%] lg:w-[80%]">
-  <section id="presentation">
-    <h1 class="text-4xl font-bold mb-2">
-      Bienvenido! Soy Óscar Casillas <Badge>Conecta</Badge>
-    </h1>
-    <h2 class="text-3xl font-semibold mb-2">Desarrollador Web</h2>
-    <p class="text-lg">
-      Convertir problemas complejos en soluciones digitales es lo que me motiva.
-    </p>
-    <p class="text-lg">
-      Manejo el stack completo de desarrollo, desde la lógica del <span
-        class="font-bold text-[#8446b1]">Backend</span
-      > y la gestión de <span class="font-bold text-[#8446b1]">APIs</span>,
-      hasta la implementación visual en el <span
-        class="font-bold text-[#8446b1]">Frontend</span
-      >.
-    </p>
-
-    <nav class="flex flex-row gap-5 py-5">
-      <SocialPill href="https://www.linkedin.com/in/oscarcasillas-8b3434158/">
-        <LinkedIn class="size-6" />
-        LinkedIn
-      </SocialPill>
-      <SocialPill href="https://github.com/CasillasOscar">
-        <GitHub class="size-6" />
-        GitHub
-      </SocialPill>
-    </nav>
-  </section>
+  <Presentation />
 </main>
