@@ -1,0 +1,40 @@
+---
+import "../styles/PopUpCertificate.css";
+---
+
+<dialog
+  id="certificate-modal"
+  class="backdrop:bg-black/60 bg-transparent p-0 rounded-lg shadow-2xl open:animate-fade-in m-auto"
+>
+  <div
+    class="relative bg-neutral-secondary-medium p-2 rounded-lg border border-default-medium max-w-3xl max-h-[90vh] flex flex-col shadow-lg"
+  >
+    <button
+      id="close-modal"
+      class="absolute top-3 right-3 bg-black/50 text-white rounded-full p-1 hover:bg-black/70 transition-colors z-10 cursor-pointer"
+      aria-label="Cerrar"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+          d="M18 6l-12 12"></path><path d="M6 6l12 12"></path></svg
+      >
+    </button>
+    <img
+      id="modal-image"
+      src=""
+      alt="Certificado"
+      class="w-full h-auto object-contain rounded max-h-[85vh]"
+    />
+  </div>
+</dialog>
+
+<script src="../scripts/PopUpCertificate.ts"></script>
