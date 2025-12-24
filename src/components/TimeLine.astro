@@ -1,112 +1,49 @@
 ---
+import TimeLineItem from "./TimeLineItem.astro";
 import Education from "../icons/Education.astro";
 import Certificate from "../icons/Certificate.astro";
 import Work from "../icons/Work.astro";
+
+const ITEMS = [
+  {
+    date: "Septiembre 2023 - Marzo 2025",
+    title: "FP Superior - Desarrollo de Aplicaciones Web",
+    icon: Education,
+    color: "bg-[#10B981]",
+  },
+  {
+    date: "Marzo, 2025",
+    title: "Google: Inteligencia Artificial y productividad",
+    subtitle: "Santander Open Academy",
+    description:
+      "Durante la obtención de este certificado, adquirí conocimientos fundamentales en el uso de herramientas de inteligencia artificial para mejorar la productividad personal y profesional.",
+    icon: Certificate,
+    color: "bg-[#06B6D4]",
+    buttonText: "Mostrar certificado",
+  },
+  {
+    date: "Marzo, 2025",
+    title: "Python",
+    subtitle: "Santander Open Academy",
+    description:
+      "Durante la obtención de este certificado, adquirí conocimientos fundamentales en el lenguaje de programación Python, incluyendo sintaxis básica, estructuras de datos...",
+    icon: Certificate,
+    color: "bg-[#06B6D4]",
+    buttonText: "Mostrar certificado",
+  },
+  {
+    date: "Marzo 2025",
+    title: "Waimatech - Grupo Waima",
+    description:
+      "En el grupo Waima formo parte del equipo de desarrollo web como FullStack Developer, trabajando con diferentes tecnologías tanto para backend, frontend, bases de datos y Apis.",
+    icon: Work,
+    color: "bg-[#4F46E5]",
+    buttonText: "Saber más",
+    isCurrent: true,
+  },
+];
 ---
 
 <ol class="relative border-s border-default">
-  <li class="ms-6">
-    <span
-      class="absolute flex items-center justify-center size-8 bg-[#10B981] rounded-full -start-4 ring-1 ring-buffer"
-    >
-      <Education
-        class="icon icon-tabler icons-tabler-outline icon-tabler-school size-5"
-      />
-    </span>
-    <time
-      class="relative top-1 bg-neutral-secondary-medium border border-default-medium text-heading text-xs font-medium px-1.5 py-0.5 rounded"
-      >Septiembre 2023 - Marzo 2025</time
-    >
-    <h3 class="my-2 text-lg font-semibold text-heading">
-      FP Superior - Desarrollo de Aplicaciones Web
-    </h3>
-  </li>
-
-  <li class="mb-10 ms-6">
-    <span
-      class="absolute flex items-center justify-center size-8 bg-[#06B6D4] rounded-full -start-4 ring-1 ring-buffer"
-    >
-      <Certificate
-        class="icon icon-tabler icons-tabler-outline icon-tabler-certificate size-5"
-      />
-    </span>
-    <time
-      class="relative top-1 bg-neutral-secondary-medium border border-default-medium text-heading text-xs font-medium px-1.5 py-0.5 rounded"
-      >Marzo, 2025</time
-    >
-    <h3 class="mt-2 text-lg font-semibold text-heading">
-      Google: Inteligencia Artificial y productividad
-    </h3>
-    <h4 class="mb-2">Santander Open Academy</h4>
-    <p class="text-body">
-      Durante la obtención de este certificado, adquirí conocimientos fundamentales en el uso de herramientas de inteligencia artificial para mejorar la productividad personal y profesional.
-    </p>
-  </li>
-
-    <li class="mb-10 ms-6">
-    <span
-      class="absolute flex items-center justify-center size-8 bg-[#06B6D4] rounded-full -start-4 ring-1 ring-buffer"
-    >
-      <Certificate
-        class="icon icon-tabler icons-tabler-outline icon-tabler-certificate size-5"
-      />
-    </span>
-    <time
-      class="relative top-1 bg-neutral-secondary-medium border border-default-medium text-heading text-xs font-medium px-1.5 py-0.5 rounded"
-      >Marzo, 2025</time
-    >
-    <h3 class="mt-2 text-lg font-semibold text-heading">
-      Python
-    </h3>
-    <h4 class="mb-2">Santander Open Academy</h4>
-    <p class="text-body">
-      Durante la obtención de este certificado, adquirí conocimientos fundamentales en el lenguaje de programación Python, incluyendo sintaxis básica, estructuras de datos...
-    </p>
-  </li>
-
-  <li class="mb-10 ms-6">
-    <span
-      class="absolute flex items-center justify-center size-8 bg-[#4F46E5] rounded-full -start-4 ring-1 ring-buffer"
-    >
-      <Work
-        class="icon icon-tabler icons-tabler-outline icon-tabler-briefcase size-5"
-      />
-    </span>
-    <time
-      class="relative top-1 bg-neutral-secondary-medium border border-default-medium text-heading text-xs font-medium px-1.5 py-0.5 rounded"
-      >Marzo 2025</time
-    >
-    <h3 class="flex items-center mb-1 text-lg font-semibold text-heading my-2">
-      Waimatech - Grupo Waima <span
-        class="ms-2 bg-brand-softer border border-brand-subtle text-fg-brand-strong text-xs font-medium px-1.5 py-0.5 rounded bg-[#A855F7]"
-        >Actualidad</span
-      >
-    </h3>
-    <p class="mb-4 text-body">
-      En el grupo Waima formo parte del equipo de desarrollo web como FullStack
-      Developer, trabajando con diferentes tecnologías tanto para backend,
-      frontend, bases de datos y Apis.
-    </p>
-    <a
-      href="#"
-      class="inline-flex items-center text-body bg-neutral-secondary-medium box-border border border-default-medium rounded hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-2 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-2 py-1 focus:outline-none"
-    >
-      Saber más
-      <svg
-        class="size-4 ms-1.5 -me-0.5"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        fill="none"
-        viewBox="0 0 24 24"
-        ><path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M19 12H5m14 0-4 4m4-4-4-4"></path></svg
-      >
-    </a>
-  </li>
+  {ITEMS.map((item) => <TimeLineItem {...item} />)}
 </ol>
