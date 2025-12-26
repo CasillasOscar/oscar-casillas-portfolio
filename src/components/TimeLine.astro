@@ -1,5 +1,6 @@
 ---
 import PopUpCertificate from "./PopUpCertificate.astro";
+import PopUpWork from "./PopUpWork.astro";
 import TimeLineItem from "./TimeLineItem.astro";
 import Education from "../icons/Education.astro";
 import Certificate from "../icons/Certificate.astro";
@@ -40,6 +41,21 @@ const ITEMS = [
     category: "education",
   },
   {
+    date: "Julio 2024 - Agosto 2024",
+    title: "Página web TeamPrideFamily - Freelance",
+    description:
+      "Este proyecto fue realizado durante mis estudios de DAW. En él me encargué de realizar el diseño y desarrollo completo de la página web para TeamPrideFamily, así mismo realicé todo el contenido multimedia y el despliegue de la misma.",
+    icon: Work,
+    color: "bg-[#4F46E5]",
+    buttonText: "Saber más",
+    isCurrent: false,
+    category: "work",
+    objective:
+      "El objetivo principal fue crear página web para TeamPrideFamily enfocada en móviles y tablets, facilitando el acceso a información sobre sus servicios y ofreciendo visibilidad a sus redes sociales.",
+    technologies: ["HTML", "CSS", "JavaScript"],
+    projectUrl: "https://teampridefamily.es",
+  },
+  {
     date: "Marzo, 2025",
     title: "Google: Inteligencia Artificial y productividad",
     subtitle: "Santander Open Academy",
@@ -73,6 +89,29 @@ const ITEMS = [
     buttonText: "Saber más",
     isCurrent: true,
     category: "work",
+    jobFunctions: [
+      "Desarrollo y mantenimiento de aplicaciones web.",
+      "Colaboración con equipos multifuncionales para diseñar e implementar nuevas funcionalidades y mejoras en las aplicaciones existentes.",
+      "Optimización del rendimiento de las aplicaciones web para mejorar la experiencia del usuario.",
+      "Implementación de pruebas y depuración de código para garantizar la calidad y fiabilidad del software.",
+    ],
+    technologies: [
+      "PHP-Láminas",
+      "Python-Django",
+      "React",
+      "Angular",
+      "TypeScript",
+      "Langchain",
+      "Celery",
+      "Redis",
+      "Docker",
+      "MYSQL",
+      "PostgreSQL",
+      "MongoDB",
+      "Git",
+      "GitLab",
+      "WordPress",
+    ],
   },
   {
     date: "Noviembre, 2025",
@@ -167,4 +206,5 @@ const ITEMS = [
 </section>
 
 <PopUpCertificate />
+<PopUpWork />
 <script src="../scripts/ScriptTimeLine.ts"></script>
