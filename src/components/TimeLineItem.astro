@@ -10,10 +10,11 @@ const {
   isCurrent,
   category,
   certificateImage,
+  ...rest
 } = Astro.props;
 ---
 
-<li class="mb-10 ms-6" data-category={category}>
+<li class="mb-10 ms-6" data-category={category} {...rest}>
   <span
     class:list={[
       "absolute flex items-center justify-center size-8 rounded-full -start-4 ring-1 ring-buffer",

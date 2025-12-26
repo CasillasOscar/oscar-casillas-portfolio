@@ -7,6 +7,32 @@ import Work from "../icons/Work.astro";
 
 const ITEMS = [
   {
+    date: "Septiembre 2016 - Marzo 2018",
+    title:
+      "FP Superior - Técnico en Animación de Actividades Físicas y Deportivas",
+    icon: Education,
+    color: "bg-[#F43F5E]",
+    category: "info_non_tech",
+  },
+  {
+    date: "Mayo 2018 - Marzo 2025",
+    title: "Decathlon Logística",
+    description:
+      "En Decathlon formé parte del equipo de logística coordinando la operativa diaria, desde el control de stock hasta la resolución de incidencias. Además, me especialicé en la formación técnica de personal, viajando a Alemania para el lanzamiento del proyecto Pocket Sorter y desarrollando la documentación formativa para los monitores del centro logístico.",
+    icon: Work,
+    color: "bg-[#F43F5E]",
+    category: "info_non_tech",
+  },
+  {
+    date: "Junio 2021 - Marzo 2022",
+    title: "Amazon DMA1",
+    description:
+      "En Amazon formé parte del equipo de operaciones logísticas, donde me encargaba de la preparación de rutas de reparto y la resolución de incidencias en tiempo real para asegurar el flujo de salida. También gestionaba el control de seguridad de la zona de carga, supervisando tanto la entrada como la descarga y carga de camiones bajo estándares de alta eficiencia.",
+    icon: Work,
+    color: "bg-[#F43F5E]",
+    category: "info_non_tech",
+  },
+  {
     date: "Septiembre 2023 - Marzo 2025",
     title: "FP Superior - Desarrollo de Aplicaciones Web",
     icon: Education,
@@ -77,24 +103,66 @@ const ITEMS = [
 
 <section>
   <nav class="mb-6">
-    <h2 class="text-lg font-semibold text-heading mb-3">Filtros línea de tiempo:</h2>
+    <h2 class="text-2xl font-semibold text-heading mb-3">Ruta Profesional</h2>
     <div class="flex flex-wrap gap-4">
-      <label class="flex items-center gap-2 text-body cursor-pointer select-none">
-        <input type="checkbox" name="filter" value="education" checked class="rounded border-default text-brand focus:ring-brand" />
+      <label
+        class="flex items-center gap-2 text-body cursor-pointer select-none"
+      >
+        <input
+          type="checkbox"
+          name="filter"
+          value="education"
+          checked
+          class="rounded border-default text-brand focus:ring-brand"
+        />
         Educación
       </label>
-      <label class="flex items-center gap-2 text-body cursor-pointer select-none">
-        <input type="checkbox" name="filter" value="certificate" checked class="rounded border-default text-brand focus:ring-brand" />
+      <label
+        class="flex items-center gap-2 text-body cursor-pointer select-none"
+      >
+        <input
+          type="checkbox"
+          name="filter"
+          value="work"
+          checked
+          class="rounded border-default text-brand focus:ring-brand"
+        />
+        Experiencia Laboral
+      </label>
+      <label
+        class="flex items-center gap-2 text-body cursor-pointer select-none"
+      >
+        <input
+          type="checkbox"
+          name="filter"
+          value="certificate"
+          checked
+          class="rounded border-default text-brand focus:ring-brand"
+        />
         Certificados
       </label>
-      <label class="flex items-center gap-2 text-body cursor-pointer select-none">
-        <input type="checkbox" name="filter" value="work" checked class="rounded border-default text-brand focus:ring-brand" />
-        Experiencia laboral
+      <label
+        class="flex items-center gap-2 text-body cursor-pointer select-none"
+      >
+        <input
+          type="checkbox"
+          name="filter"
+          value="info_non_tech"
+          class="rounded border-default text-brand focus:ring-brand"
+        />
+        Perfil no técnico
       </label>
     </div>
   </nav>
   <ol class="relative border-s border-default">
-    {ITEMS.map((item) => <TimeLineItem {...item} />)}
+    {
+      ITEMS.map((item) => (
+        <TimeLineItem
+          {...item}
+          style={item.category === "info_non_tech" ? "display: none" : ""}
+        />
+      ))
+    }
   </ol>
 </section>
 
