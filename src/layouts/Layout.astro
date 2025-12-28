@@ -2,7 +2,7 @@
 import "@fontsource-variable/onest";
 import "../styles/global.css";
 import Header from "../components/Header.astro";
-import Footer from '../components/Footer.astro';
+import Footer from "../components/Footer.astro";
 
 interface Props {
   title?: string;
@@ -21,10 +21,13 @@ const { title = "Default", description = "Default description" } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
-	<link rel="icon" href="/assets/my-space-icon.png" />
+    <link rel="icon" href="/assets/my-space-icon.png" />
   </head>
   <body>
-    <div class="fixed top-0 z-[-2] h-screen w-full bg-[#181a1b] bg-[radial-gradient(ellipse_80%_80%_at_50%_-30%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
+    <div
+      class="fixed top-0 z-[-2] h-screen w-full bg-[#181a1b] bg-[radial-gradient(ellipse_80%_80%_at_50%_-30%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
+    >
+    </div>
     <Header />
     <slot />
     <Footer />
@@ -44,5 +47,11 @@ const { title = "Default", description = "Default description" } = Astro.props;
     flex-direction: column;
     min-height: 100vh;
     align-items: center;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 </style>

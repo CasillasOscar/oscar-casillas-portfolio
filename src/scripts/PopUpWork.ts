@@ -27,7 +27,7 @@ function openPopup(data: any) {
     if (functionsContainer) functionsContainer.classList.remove("hidden");
     if (functionsList) {
       functionsList.innerHTML = data.jobFunctions
-        .map((func: string) => `<li>${func}</li>`)
+        .map((func: string) => `<li class="mb-1">${func}</li>`)
         .join("");
     }
   } else {
