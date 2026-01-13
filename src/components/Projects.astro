@@ -3,9 +3,12 @@ const { id } = Astro.props;
 
 const PROJECTS = [
   {
-    title: "TeamPrideFamily Web",
-    description:
-      "Web para el gimnasio Team Pride Family para móviles y tablets.",
+    title: "TeamPrideFamily Web - Freelance",
+    parrafos: [
+      "Web para el gimnasio TeamPrideFamily para móviles y tablets.",
+      "En este proyecto me encargué de todo el contenido gráfico de la web, diseño, desarrollo y despliegue de la misma. En la web usé HTML, CSS y JavaScript puro para la interactividad aplicando lo aprendido durante el primer curso.",
+      "Proyecto realizado entre el primer y segundo curso de DAW.",
+    ],
     image: "assets/TPM-project.jpg",
     tags: ["HTML", "CSS", "JavaScript"],
     github: null,
@@ -14,10 +17,13 @@ const PROJECTS = [
   },
   {
     title: "ReUsa - Proyecto TFC",
-    description:
-      "Descripción breve del proyecto. Enfoque en la experiencia de usuario y rendimiento.",
-    image: "/path/to/project2.jpg",
-    tags: ["React", "Typescript", "Java-SpringBoot", "MySQL", "GIT", "Postman"],
+    parrafos: [
+      "Proyecto colaborativo de TFC realizado para la venta de productos de segunda mano entre usuarios.",
+      "Mi trabajo consistió en el diseño y creación de la base de datos, la creación Backend completo con SpringBoot usando un JWT como autenticador de peticiones y la implementación del diseño frontal con React y TypeScript con resolución de bugs y conexión con el Backend.",
+      "También participé en el despliegue del proyecto con Render y Google Cloud Platform.",
+    ],
+    image: "assets/Reusa-project.PNG",
+    tags: ["React", "TypeScript", "SpringBoot", "MySQL", "GIT", "Postman"],
     github: "https://github.com/CasillasOscar/Proyecto_TFC/tree/main",
     demo: null,
     visitar: null,
@@ -42,7 +48,17 @@ const PROJECTS = [
             </div>
             <div class="flex flex-1 flex-col p-6">
               <h3 class="text-xl font-bold mb-2 text-white">{project.title}</h3>
-              <p class="mb-4 text-gray-300">{project.description}</p>
+              <p class="mb-4 text-gray-300">{project.parrafos[0]}</p>
+              {project.parrafos.length > 1 && (
+                <>
+                  <div class="hidden">
+                    {project.parrafos.slice(1).map((parrafo) => (
+                      <p class="mb-4 text-gray-300">{parrafo}</p>
+                    ))}
+                  </div>
+                  <button class="read-more-btn text-[#A855F7] hover:text-purple-400 mb-4 text-sm font-semibold focus:outline-none text-left w-fit cursor-pointer hover:underline">Leer más...</button>
+                </>
+              )}
               <div class="flex flex-wrap gap-2 my-4">
                 {project.tags.map((tag) => (
                   <span class="px-3 py-1 rounded-full text-sm border-gray-700 bg-gray-800 hover:border-gray-500 text-gray-300 border hover:bg-gray-800/50 cursor-default">
@@ -97,3 +113,16 @@ const PROJECTS = [
     </div>
   </div>
 </section>
+
+<script>
+  const buttons = document.querySelectorAll(".read-more-btn");
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const content = button.previousElementSibling;
+      if(!content) return;
+      content.classList.toggle("hidden");
+      button.textContent = content.classList.contains("hidden") ? "Leer más..." : "Leer menos";
+    });
+  });
+</script>
