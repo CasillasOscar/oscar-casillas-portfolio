@@ -1,0 +1,99 @@
+---
+const { id } = Astro.props;
+
+const PROJECTS = [
+  {
+    title: "TeamPrideFamily Web",
+    description:
+      "Web para el gimnasio Team Pride Family para móviles y tablets.",
+    image: "assets/TPM-project.jpg",
+    tags: ["HTML", "CSS", "JavaScript"],
+    github: null,
+    demo: null,
+    visitar: "https://www.teampridefamily.es/",
+  },
+  {
+    title: "ReUsa - Proyecto TFC",
+    description:
+      "Descripción breve del proyecto. Enfoque en la experiencia de usuario y rendimiento.",
+    image: "/path/to/project2.jpg",
+    tags: ["React", "Typescript", "Java-SpringBoot", "MySQL", "GIT", "Postman"],
+    github: "https://github.com/CasillasOscar/Proyecto_TFC/tree/main",
+    demo: null,
+    visitar: null,
+  },
+];
+---
+
+<section id={id}>
+  <div class="container mx-auto">
+    <h2 class="text-2xl font-semibold text-heading mb-3">Proyectos</h2>
+    <div class="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-8">
+      {
+        PROJECTS.map((project) => (
+          <article class="flex flex-col bg-white/5 rounded-xl transition-transform duration-300 hover:-translate-y-1 hover:z-10 hover:bg-white/10 border-2 border-gray-600 hover:border-[#A855F7]">
+            <div class="card-image">
+              <img
+                src={project.image}
+                alt={project.title}
+                loading="lazy"
+                class="w-full h-70 object-cover object-top rounded-t-xl"
+              />
+            </div>
+            <div class="flex flex-1 flex-col p-6">
+              <h3 class="text-xl font-bold mb-2 text-white">{project.title}</h3>
+              <p class="mb-4 text-gray-300">{project.description}</p>
+              <div class="flex flex-wrap gap-2 my-4">
+                {project.tags.map((tag) => (
+                  <span class="px-3 py-1 rounded-full text-sm border-gray-700 bg-gray-800 hover:border-gray-500 text-gray-300 border hover:bg-gray-800/50 cursor-default">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <div class="mt-auto flex gap-4">
+                {project.github ? (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="px-4 py-2 rounded-md font-semibold text-center transition-opacity duration-200 hover:opacity-80 border border-(--text-primary,#fff) text-(--text-primary,#fff) cursor-pointer"
+                  >
+                    GitHub
+                  </a>
+                ) : (
+                  <div class="relative group z-50">
+                    <button class="px-4 py-2 rounded-md font-semibold text-center border border-gray-600 text-gray-600 cursor-not-allowed">
+                      GitHub
+                    </button>
+                    <span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-2 py-1 bg-red-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200 pointer-events-none">
+                      Repositorio no público
+                    </span>
+                  </div>
+                )}
+                {project.visitar || project.demo ? (
+                  <a
+                    href={project.visitar ? project.visitar : project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="px-4 py-2 rounded-md font-semibold text-center transition-opacity duration-200 hover:opacity-80 bg-[#A855F7] text-white cursor-pointer"
+                  >
+                    {project.visitar ? "Visitar" : "Demo"}
+                  </a>
+                ) : (
+                  <div class="relative group z-50">
+                    <button class="px-4 py-2 rounded-md font-semibold text-center border border-gray-600 text-gray-600 cursor-not-allowed">
+                      Demo
+                    </button>
+                    <span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-2 py-1 bg-red-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200 pointer-events-none">
+                      Demo no disponible
+                    </span>
+                  </div>
+                )}
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
