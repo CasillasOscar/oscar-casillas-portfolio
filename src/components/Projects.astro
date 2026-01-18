@@ -24,7 +24,7 @@ const PROJECTS = [
       "También participé en el despliegue del proyecto con Render y Google Cloud Platform.",
     ],
     images: ["assets/projects/Reusa/Reusa-project2.PNG", "assets/projects/Reusa/Reusa-project3.PNG", "assets/projects/Reusa/Reusa-project4.PNG", "assets/projects/Reusa/Reusa-project.PNG"],
-    tags: ["React", "TypeScript", "SpringBoot", "MySQL", "GIT", "Postman"],
+    tags: ["React", "SpringBoot", "MySQL","TypeScript", "GIT", "Postman"],
     github: "https://github.com/CasillasOscar/Proyecto_TFC/tree/main",
     demo: null,
     visitar: null,
@@ -34,7 +34,7 @@ const PROJECTS = [
 
 <section id={id}>
     <h2 class="text-2xl font-semibold text-heading mb-3">Proyectos</h2>
-    <div class="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-8">
+    <div class="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(450px,1fr))] gap-12 items-start">
       {
         PROJECTS.map((project) => (
           <article class="flex flex-col bg-white/5 rounded-xl transition-transform duration-300 hover:-translate-y-1 hover:z-10 hover:bg-white/10 border-2 border-gray-600 hover:border-[#A855F7]">
@@ -43,7 +43,7 @@ const PROJECTS = [
             </div>
             <div class="flex flex-1 flex-col p-6">
               <h3 class="text-xl font-bold mb-2 text-white">{project.title}</h3>
-              <p class="mb-4 text-gray-300">{project.parrafos[0]}</p>
+              <p class="description-first mb-4 text-gray-300 min-h-12">{project.parrafos[0]}</p>
               {project.parrafos.length > 1 && (
                 <>
                   <div class="hidden">
@@ -55,11 +55,23 @@ const PROJECTS = [
                 </>
               )}
               <div class="flex flex-wrap gap-2 my-4">
-                {project.tags.map((tag) => (
+                {project.tags.slice(0, 3).map((tag) => (
                   <span class="px-3 py-1 rounded-full text-sm border-gray-700 bg-gray-800 hover:border-gray-500 text-gray-300 border hover:bg-gray-800/50 cursor-default">
                     {tag}
                   </span>
                 ))}
+                {project.tags.length > 3 && (
+                  <>
+                    <div class="hidden extra-tags">
+                      {project.tags.slice(3).map((tag) => (
+                        <span class="px-3 py-1 rounded-full text-sm border-gray-700 bg-gray-800 hover:border-gray-500 text-gray-300 border hover:bg-gray-800/50 cursor-default">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <button class="show-tags-btn text-[#A855F7] hover:text-purple-400 text-sm font-semibold focus:outline-none cursor-pointer hover:underline self-center">Mostrar stack...</button>
+                  </>
+                )}
               </div>
               <div class="mt-auto flex gap-4">
                 {project.github ? (
@@ -114,9 +126,26 @@ const PROJECTS = [
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
       const content = button.previousElementSibling;
-      if(!content) return;
+      const firstParagraph = content?.previousElementSibling;
+      if(!content || !firstParagraph) return;
       content.classList.toggle("hidden");
+      if (!content.classList.contains("hidden")) {
+        firstParagraph.classList.remove("min-h-12");
+      } else {
+        firstParagraph.classList.add("min-h-12");
+      }
       button.textContent = content.classList.contains("hidden") ? "Leer más..." : "Leer menos";
+    });
+  });
+
+  const tagButtons = document.querySelectorAll(".show-tags-btn");
+  tagButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const extraTags = button.previousElementSibling;
+      if(!extraTags) return;
+      extraTags.classList.toggle("hidden");
+      extraTags.classList.toggle("contents");
+      button.textContent = extraTags.classList.contains("hidden") ? "Mostrar stack..." : "Cerrar stack...";
     });
   });
 </script>
