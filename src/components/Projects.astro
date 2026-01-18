@@ -1,4 +1,5 @@
 ---
+import ImageCarousel from "./ImageCarousel.astro";
 const { id } = Astro.props;
 
 const PROJECTS = [
@@ -9,7 +10,7 @@ const PROJECTS = [
       "En este proyecto me encargué de todo el contenido gráfico de la web, diseño, desarrollo y despliegue de la misma. En la web usé HTML, CSS y JavaScript puro para la interactividad aplicando lo aprendido durante el primer curso.",
       "Proyecto realizado entre el primer y segundo curso de DAW.",
     ],
-    image: "assets/TPM-project.jpg",
+    images: ["assets/projects/TPF/TPF-project.jpg", "assets/projects/TPF/TPF-project2.PNG", "assets/projects/TPF/TPF-project3.PNG"],
     tags: ["HTML", "CSS", "JavaScript"],
     github: null,
     demo: null,
@@ -22,7 +23,7 @@ const PROJECTS = [
       "Mi trabajo consistió en el diseño y creación de la base de datos, la creación Backend completo con SpringBoot usando un JWT como autenticador de peticiones y la implementación del diseño frontal con React y TypeScript con resolución de bugs y conexión con el Backend.",
       "También participé en el despliegue del proyecto con Render y Google Cloud Platform.",
     ],
-    image: "assets/Reusa-project.PNG",
+    images: ["assets/projects/Reusa/Reusa-project.PNG", "assets/projects/Reusa/Reusa-project.PNG", "assets/projects/Reusa/Reusa-project.PNG"],
     tags: ["React", "TypeScript", "SpringBoot", "MySQL", "GIT", "Postman"],
     github: "https://github.com/CasillasOscar/Proyecto_TFC/tree/main",
     demo: null,
@@ -39,12 +40,7 @@ const PROJECTS = [
         PROJECTS.map((project) => (
           <article class="flex flex-col bg-white/5 rounded-xl transition-transform duration-300 hover:-translate-y-1 hover:z-10 hover:bg-white/10 border-2 border-gray-600 hover:border-[#A855F7]">
             <div class="card-image">
-              <img
-                src={project.image}
-                alt={project.title}
-                loading="lazy"
-                class="w-full h-70 object-cover object-top rounded-t-xl"
-              />
+              <ImageCarousel images={project.images} alt={project.title} />
             </div>
             <div class="flex flex-1 flex-col p-6">
               <h3 class="text-xl font-bold mb-2 text-white">{project.title}</h3>
