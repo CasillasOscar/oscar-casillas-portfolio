@@ -13,11 +13,17 @@ const { images, alt } = Astro.props;
       <img
         src={img}
         alt={`${alt} - Imagen ${index + 1}`}
-        class="w-full h-full object-cover object-top-left shrink-0 cursor-zoom-in"
+        class="w-full h-full object-cover object-top-left shrink-0 cursor-default lg:cursor-zoom-in"
         loading="lazy"
       />
     ))}
   </div>
+
+  <button class="carousel-zoom-btn absolute top-2 right-2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity focus:outline-none z-10 cursor-pointer" aria-label="Ampliar imagen">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
+    </svg>
+  </button>
 
   {images.length > 1 && (
     <>
@@ -53,6 +59,7 @@ const { images, alt } = Astro.props;
       const prevBtn = carousel.querySelector('.carousel-prev');
       const nextBtn = carousel.querySelector('.carousel-next');
       const images = track?.querySelectorAll('img');
+      const zoomBtn = carousel.querySelector('.carousel-zoom-btn');
 
       // Elementos del Zoom
       const dialog = carousel.querySelector('.carousel-zoom-dialog') as HTMLDialogElement;
@@ -61,15 +68,29 @@ const { images, alt } = Astro.props;
       const zoomContainer = dialog?.querySelector('.zoom-container');
       
       if (!track || !images) return;
+      
+      let currentIndex = 0;
 
       // Lógica del Zoom
       if (dialog && zoomedImage) {
         images.forEach(img => {
           img.addEventListener('click', () => {
+            if (window.matchMedia('(min-width: 1024px)').matches) {
+              zoomedImage.src = img.src;
+              zoomedImage.alt = img.alt;
+              dialog.showModal();
+            }
+          });
+        });
+        
+        zoomBtn?.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const img = images[currentIndex];
+          if (img) {
             zoomedImage.src = img.src;
             zoomedImage.alt = img.alt;
             dialog.showModal();
-          });
+          }
         });
 
         const closeDialog = () => {
@@ -91,8 +112,6 @@ const { images, alt } = Astro.props;
 
       // Lógica del Carrusel (solo si hay más de 1 imagen)
       if (images.length > 1) {
-          let currentIndex = 0;
-
           const updateCarousel = () => {
               track.style.transform = `translateX(-${currentIndex * 100}%)`;
           };
