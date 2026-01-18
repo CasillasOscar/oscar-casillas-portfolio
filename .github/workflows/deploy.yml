@@ -2,7 +2,8 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [master]
+    branches:
+      - master
 
 permissions:
   contents: read
@@ -15,9 +16,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Install, build, and upload with Astro
         uses: withastro/action@v3
-        env: 
+        env:
           PUBLIC_FORM_ID: ${{ secrets.PUBLIC_FORM_ID }}
 
   deploy:
