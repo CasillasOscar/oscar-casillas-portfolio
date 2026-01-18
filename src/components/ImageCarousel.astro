@@ -13,7 +13,7 @@ const { images, alt } = Astro.props;
       <img
         src={img}
         alt={`${alt} - Imagen ${index + 1}`}
-        class="w-full h-full object-cover object-top shrink-0"
+        class="w-full h-full object-cover object-top-left shrink-0 cursor-zoom-in"
         loading="lazy"
       />
     ))}
@@ -33,6 +33,15 @@ const { images, alt } = Astro.props;
       </button>
     </>
   )}
+
+  <dialog class="carousel-zoom-dialog bg-transparent p-0 backdrop:bg-black/90 w-screen h-screen max-w-none max-h-none m-0 border-none outline-none">
+    <div class="zoom-container relative w-full h-full flex items-center justify-center">
+      <button class="close-zoom absolute top-4 right-4 text-white hover:text-gray-300 z-50 focus:outline-none cursor-pointer p-2 bg-black/50 rounded-full">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+      </button>
+      <img src="" alt="Zoomed Image" class="zoomed-image max-w-[95%] max-h-[95%] object-contain shadow-2xl rounded-md" />
+    </div>
+  </dialog>
 </div>
 
 <script>
@@ -44,26 +53,62 @@ const { images, alt } = Astro.props;
       const prevBtn = carousel.querySelector('.carousel-prev');
       const nextBtn = carousel.querySelector('.carousel-next');
       const images = track?.querySelectorAll('img');
+
+      // Elementos del Zoom
+      const dialog = carousel.querySelector('.carousel-zoom-dialog') as HTMLDialogElement;
+      const zoomedImage = dialog?.querySelector('.zoomed-image') as HTMLImageElement;
+      const closeBtn = dialog?.querySelector('.close-zoom');
+      const zoomContainer = dialog?.querySelector('.zoom-container');
       
-      if (!track || !images || images.length <= 1) return;
+      if (!track || !images) return;
 
-      let currentIndex = 0;
+      // Lógica del Zoom
+      if (dialog && zoomedImage) {
+        images.forEach(img => {
+          img.addEventListener('click', () => {
+            zoomedImage.src = img.src;
+            zoomedImage.alt = img.alt;
+            dialog.showModal();
+          });
+        });
 
-      const updateCarousel = () => {
-          track.style.transform = `translateX(-${currentIndex * 100}%)`;
-      };
+        const closeDialog = () => {
+             dialog.close();
+        };
 
-      prevBtn?.addEventListener('click', (e) => {
-          e.stopPropagation();
-          currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
-          updateCarousel();
-      });
+        closeBtn?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeDialog();
+        });
 
-      nextBtn?.addEventListener('click', (e) => {
-          e.stopPropagation();
-          currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
-          updateCarousel();
-      });
+        dialog.addEventListener('click', (e) => {
+            // Cerrar si se hace clic fuera de la imagen
+            if (e.target === dialog || e.target === zoomContainer) {
+                closeDialog();
+            }
+        });
+      }
+
+      // Lógica del Carrusel (solo si hay más de 1 imagen)
+      if (images.length > 1) {
+          let currentIndex = 0;
+
+          const updateCarousel = () => {
+              track.style.transform = `translateX(-${currentIndex * 100}%)`;
+          };
+
+          prevBtn?.addEventListener('click', (e) => {
+              e.stopPropagation();
+              currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+              updateCarousel();
+          });
+
+          nextBtn?.addEventListener('click', (e) => {
+              e.stopPropagation();
+              currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+              updateCarousel();
+          });
+      }
     });
   }
 
