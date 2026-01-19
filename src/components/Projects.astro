@@ -7,7 +7,7 @@ const PROJECTS = [
     id: "team-pride-family",
     title: "TeamPrideFamily Web - Freelance",
     parrafos: [
-      "Web para el gimnasio TeamPrideFamily para móviles y tablets.",
+      "Web personalizada para el gimnasio TeamPrideFamily diseñada para su visualización óptima en móviles y tablets.",
       "En este proyecto me encargué de todo el contenido gráfico de la web, diseño, desarrollo y despliegue de la misma. En la web usé HTML, CSS y JavaScript puro para la interactividad aplicando lo aprendido durante el primer curso.",
       "Proyecto realizado entre el primer y segundo curso de DAW.",
     ],
@@ -56,7 +56,7 @@ const PROJECTS = [
         </svg>
       </button>
 
-      <div id="projects-carousel" class="flex overflow-x-auto gap-8 py-4 snap-x snap-mandatory scroll-smooth scrollbar-hide items-start">
+      <div id="projects-carousel" class="flex overflow-x-auto gap-8 py-4 snap-x snap-mandatory scroll-smooth scrollbar-hide items-stretch">
       {
         PROJECTS.map((project) => (
           <article id={project.id} data-project-id={project.id} class="w-full lg:w-[calc(50%-1rem)] shrink-0 snap-center flex flex-col bg-white/5 rounded-xl transition-transform duration-300 lg:hover:-translate-y-1 lg:hover:z-10 lg:hover:bg-white/10 border-2 border-gray-600 lg:hover:border-[#A855F7]">
@@ -65,7 +65,7 @@ const PROJECTS = [
             </div>
             <div class="flex flex-1 flex-col p-6">
               <h3 class="text-xl font-bold mb-2 text-white">{project.title}</h3>
-              <p class="description-first mb-4 text-gray-300 min-h-12">{project.parrafos[0]}</p>
+              <p class="description-first mb-4 text-gray-300 min-h-12 line-clamp-3">{project.parrafos[0]}</p>
               {project.parrafos.length > 1 && (
                 <>
                   <div class="hidden">
@@ -167,6 +167,12 @@ const PROJECTS = [
       -ms-overflow-style: none;
       scrollbar-width: none;
   }
+  .line-clamp-3 {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+  }
 </style>
 
 <script>
@@ -179,9 +185,9 @@ const PROJECTS = [
       if(!content || !firstParagraph) return;
       content.classList.toggle("hidden");
       if (!content.classList.contains("hidden")) {
-        firstParagraph.classList.remove("min-h-12");
+        firstParagraph.classList.remove("min-h-12", "line-clamp-3");
       } else {
-        firstParagraph.classList.add("min-h-12");
+        firstParagraph.classList.add("min-h-12", "line-clamp-3");
       }
       button.textContent = content.classList.contains("hidden") ? "Leer más..." : "Leer menos";
     });
@@ -237,7 +243,7 @@ const PROJECTS = [
             const firstParagraph = content?.previousElementSibling;
             if (content && !content.classList.contains("hidden")) {
               content.classList.add("hidden");
-              if (firstParagraph) firstParagraph.classList.add("min-h-12");
+              if (firstParagraph) firstParagraph.classList.add("min-h-12", "line-clamp-3");
               readMoreBtn.textContent = "Leer más...";
             }
           }
