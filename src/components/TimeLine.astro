@@ -17,7 +17,8 @@ const ITEMS = [
     color: "bg-[#06B6D4]",
     buttonText: "Mostrar certificado",
     category: "certificate",
-    certificateImage: "/oscar-casillas-portfolio/assets/certificates/CertificateApiOps.png",
+    certificateImage:
+      "/oscar-casillas-portfolio/assets/certificates/CertificateApiOps.png",
   },
   {
     date: "Noviembre 2025",
@@ -29,7 +30,8 @@ const ITEMS = [
     color: "bg-[#06B6D4]",
     buttonText: "Mostrar certificado",
     category: "certificate",
-    certificateImage: "/oscar-casillas-portfolio/assets/certificates/CertificateApiOwner.png",
+    certificateImage:
+      "/oscar-casillas-portfolio/assets/certificates/CertificateApiOwner.png",
   },
   {
     date: "Marzo 2025",
@@ -65,7 +67,7 @@ const ITEMS = [
       "WordPress",
       "AWSO2 AM",
       "AWSO2 MI",
-      "Cucumber"
+      "Cucumber",
     ],
   },
   {
@@ -78,7 +80,8 @@ const ITEMS = [
     color: "bg-[#06B6D4]",
     buttonText: "Mostrar certificado",
     category: "certificate",
-    certificateImage: "/oscar-casillas-portfolio/assets/certificates/CertificatePython.PNG",
+    certificateImage:
+      "/oscar-casillas-portfolio/assets/certificates/CertificatePython.PNG",
   },
   {
     date: "Marzo 2025",
@@ -90,7 +93,8 @@ const ITEMS = [
     color: "bg-[#06B6D4]",
     buttonText: "Mostrar certificado",
     category: "certificate",
-    certificateImage: "/oscar-casillas-portfolio/assets/certificates/CertificateIA.PNG",
+    certificateImage:
+      "/oscar-casillas-portfolio/assets/certificates/CertificateIA.PNG",
   },
   {
     date: "Julio 2024 - Agosto 2024",
@@ -155,18 +159,6 @@ const { id } = Astro.props;
         <input
           type="checkbox"
           name="filter"
-          value="education"
-          checked
-          class="rounded border-default text-brand focus:ring-brand"
-        />
-        Educación
-      </label>
-      <label
-        class="flex items-center gap-2 text-body cursor-pointer select-none"
-      >
-        <input
-          type="checkbox"
-          name="filter"
           value="work"
           checked
           class="rounded border-default text-brand focus:ring-brand"
@@ -184,6 +176,18 @@ const { id } = Astro.props;
           class="rounded border-default text-brand focus:ring-brand"
         />
         Certificados
+      </label>
+      <label
+        class="flex items-center gap-2 text-body cursor-pointer select-none"
+      >
+        <input
+          type="checkbox"
+          name="filter"
+          value="education"
+          checked
+          class="rounded border-default text-brand focus:ring-brand"
+        />
+        Formación
       </label>
       <label
         class="flex items-center gap-2 text-body cursor-pointer select-none"
