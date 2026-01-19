@@ -148,7 +148,7 @@ const PROJECTS = [
       </button>
     </div>
 
-    <div class="flex justify-center gap-3 mt-6">
+    <div class="flex justify-center gap-3 mt-2 lg:mt-6">
       {PROJECTS.map((project, index) => (
         <button
           data-target-id={project.id}
@@ -229,6 +229,29 @@ const PROJECTS = [
         } else {
           dot.classList.add("bg-gray-600");
           dot.classList.remove("bg-[#A855F7]", "scale-125");
+
+          // Resetear estado de "Leer más"
+          const readMoreBtn = entry.target.querySelector(".read-more-btn");
+          if (readMoreBtn) {
+            const content = readMoreBtn.previousElementSibling;
+            const firstParagraph = content?.previousElementSibling;
+            if (content && !content.classList.contains("hidden")) {
+              content.classList.add("hidden");
+              if (firstParagraph) firstParagraph.classList.add("min-h-12");
+              readMoreBtn.textContent = "Leer más...";
+            }
+          }
+
+          // Resetear estado de "Mostrar stack"
+          const showTagsBtn = entry.target.querySelector(".show-tags-btn");
+          if (showTagsBtn) {
+            const extraTags = showTagsBtn.previousElementSibling;
+            if (extraTags && !extraTags.classList.contains("hidden")) {
+              extraTags.classList.add("hidden");
+              extraTags.classList.remove("contents");
+              showTagsBtn.textContent = "Mostrar stack...";
+            }
+          }
         }
       }
     });
