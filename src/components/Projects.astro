@@ -46,10 +46,17 @@ const PROJECTS = [
 
 <section id={id}>
     <h2 class="text-2xl font-semibold text-heading mb-3">Proyectos</h2>
-    <div class="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(450px,1fr))] gap-12 items-start">
+    <div class="relative">
+      <button id="prev-project" class="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-[#A855F7] hover:bg-[#A855F7]/80 text-white p-2 rounded-full backdrop-blur-sm transition-all -ml-4 md:-ml-12 hidden lg:block cursor-pointer" aria-label="Anterior proyecto">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
+      </button>
+
+      <div id="projects-carousel" class="flex overflow-x-auto gap-8 py-4 snap-x snap-mandatory scroll-smooth scrollbar-hide items-start">
       {
         PROJECTS.map((project) => (
-          <article class="flex flex-col bg-white/5 rounded-xl transition-transform duration-300 hover:-translate-y-1 hover:z-10 hover:bg-white/10 border-2 border-gray-600 hover:border-[#A855F7]">
+          <article class="w-full lg:w-[calc(50%-1rem)] shrink-0 snap-center flex flex-col bg-white/5 rounded-xl transition-transform duration-300 hover:-translate-y-1 hover:z-10 hover:bg-white/10 border-2 border-gray-600 hover:border-[#A855F7]">
             <div class="card-image">
               <ImageCarousel images={project.images} alt={project.title} />
             </div>
@@ -129,8 +136,25 @@ const PROJECTS = [
           </article>
         ))
       }
+      </div>
+
+      <button id="next-project" class="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-[#A855F7] hover:bg-[#A855F7]/80 text-white p-2 rounded-full backdrop-blur-sm transition-all -mr-4 md:-mr-12 hidden lg:block cursor-pointer" aria-label="Siguiente proyecto">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        </svg>
+      </button>
     </div>
 </section>
+
+<style>
+  .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+  }
+  .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+  }
+</style>
 
 <script>
   const buttons = document.querySelectorAll(".read-more-btn");
@@ -159,5 +183,30 @@ const PROJECTS = [
       extraTags.classList.toggle("contents");
       button.textContent = extraTags.classList.contains("hidden") ? "Mostrar stack..." : "Cerrar stack...";
     });
+  });
+
+  const carouselContainer = document.getElementById('projects-carousel');
+  const prevBtn = document.getElementById('prev-project');
+  const nextBtn = document.getElementById('next-project');
+
+  const updateButtons = () => {
+    if (!carouselContainer || !prevBtn || !nextBtn) return;
+    const { scrollLeft, scrollWidth, clientWidth } = carouselContainer;
+    prevBtn.style.opacity = scrollLeft <= 10 ? '0' : '1';
+    prevBtn.style.pointerEvents = scrollLeft <= 10 ? 'none' : 'auto';
+    nextBtn.style.opacity = scrollLeft + clientWidth >= scrollWidth - 10 ? '0' : '1';
+    nextBtn.style.pointerEvents = scrollLeft + clientWidth >= scrollWidth - 10 ? 'none' : 'auto';
+  };
+
+  carouselContainer?.addEventListener('scroll', updateButtons);
+  window.addEventListener('resize', updateButtons);
+  updateButtons();
+
+  prevBtn?.addEventListener('click', () => {
+    carouselContainer?.scrollBy({ left: -carouselContainer.clientWidth, behavior: 'smooth' });
+  });
+
+  nextBtn?.addEventListener('click', () => {
+    carouselContainer?.scrollBy({ left: carouselContainer.clientWidth, behavior: 'smooth' });
   });
 </script>
