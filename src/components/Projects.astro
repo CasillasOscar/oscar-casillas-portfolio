@@ -59,7 +59,7 @@ const PROJECTS = [
       <div id="projects-carousel" class="flex overflow-x-auto gap-8 py-4 snap-x snap-mandatory scroll-smooth scrollbar-hide items-start">
       {
         PROJECTS.map((project) => (
-          <article id={project.id} data-project-id={project.id} class="w-full lg:w-[calc(50%-1rem)] shrink-0 snap-center flex flex-col bg-white/5 rounded-xl transition-transform duration-300 hover:-translate-y-1 hover:z-10 hover:bg-white/10 border-2 border-gray-600 hover:border-[#A855F7]">
+          <article id={project.id} data-project-id={project.id} class="w-full lg:w-[calc(50%-1rem)] shrink-0 snap-center flex flex-col bg-white/5 rounded-xl transition-transform duration-300 lg:hover:-translate-y-1 lg:hover:z-10 lg:hover:bg-white/10 border-2 border-gray-600 lg:hover:border-[#A855F7]">
             <div class="card-image">
               <ImageCarousel images={project.images} alt={project.title} />
             </div>
